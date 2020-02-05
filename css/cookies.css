@@ -1,0 +1,93 @@
+.cookies__container {
+  background-color: #fff;
+  display: none;
+}
+
+.cookies__container--open {
+  display: block;
+  border-top: 1px solid #e0e0e0;
+}
+
+.cookies__content {
+  padding: 20px;
+}
+
+.cookies__icon {
+  cursor: pointer;
+  display: block;
+  height: 36px;
+  position: absolute;
+  right: 36px;
+  width: 36px;
+}
+
+@media (min-width: 0) and (max-width: 991px) {
+  .cookies__icon {
+    height: 24px;
+    right: 20px;
+    top: 12px;
+    width: 24px;
+  }
+
+  .cookies__icon .icons {
+    font-size: 24px;
+  }
+}
+
+.cookies__icon .icons {
+  font-size: 36px;
+}
+
+.cookies__text--desktop {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .cookies__text--desktop {
+    display: block;
+  }
+}
+
+.cookies__text--mobile {
+  margin-bottom: 25px;
+}
+
+@media (min-width: 992px) {
+  .cookies__text--mobile {
+    display: none;
+  }
+}
+
+.cookies__base {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.cookies .cmp-text {
+  margin-bottom: 20px
+}
+
+@media (min-width: 0) and (max-width: 991px) {
+  .cookies .cmp-text {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+}
+
+.cookies .cmp-title {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 0) and (max-width: 991px) {
+  .cookies .cmp-title {
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 0) and (max-width: 991px) {
+  .cookies .cmp-title .cmp-title__text {
+    font-size: 20px;
+  }
+}
