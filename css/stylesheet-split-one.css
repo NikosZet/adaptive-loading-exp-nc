@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .btn {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   letter-spacing: normal;

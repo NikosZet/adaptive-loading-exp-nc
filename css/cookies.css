@@ -12,6 +12,10 @@
   padding: 20px;
 }
 
+.cookies__content .cmp-title__text {
+  font-weight: 500;
+}
+
 .cookies__icon {
   cursor: pointer;
   display: block;
