@@ -44,17 +44,18 @@ function handleSticky(accept, decline, close, sticky) {
     console.log('Remove Adaptive');
     //get assets(image-video)
 
-    //change resources 'src' or design(take desicions)
+    //change resources 'src' or design(lower resolution or none)
+
   }
 }
 
 function optimizePage(images, videos) {
   //get assets(image-video)
 
-  //change resources 'src' or design(take desicions)
+  //change resources 'src' or design(take decisions)
   console.log(images, videos);
 
-  //change naming of images to handle the src of each image seperatelly by a loop
+  //change naming of images to handle the src of each image separately by a loop
 }
 
 // Conditions to optimize and display the option (2G, 3G)
