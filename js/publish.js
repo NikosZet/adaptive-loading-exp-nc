@@ -10,7 +10,6 @@ while (i < 10000) {
     x++;
   }
 }
-console.log('simulation task ended');
 
 var myArray3 = [];
 var y = 0;
@@ -24,4 +23,3 @@ while (y < 1000) {
     p++;
   }
 }
-console.log('simulation task ended 2');
