@@ -1,0 +1,8 @@
+.nc-image__image--adaptive {
+  background-color: #5a3a97;
+  min-width: 100px;
+  width: 50%;
+  padding: 10px 20px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
