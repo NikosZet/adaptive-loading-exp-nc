@@ -95,3 +95,7 @@
     font-size: 20px;
   }
 }
+
+.cookies__wrapper .cookies__container .cookies__content .button {
+  width: 145px;
+}

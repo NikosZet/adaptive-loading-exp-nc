@@ -9,7 +9,7 @@ var adaptiveLoading = {
     processorCases: []
 }
 
-function connection() {
+function isGoodConnection() {
     if (adaptiveLoading.effectiveType === adaptiveLoading.networkCases[0] ||
         adaptiveLoading.effectiveType === adaptiveLoading.networkCases[1] ||
         adaptiveLoading.effectiveType === adaptiveLoading.networkCases[2]) {
