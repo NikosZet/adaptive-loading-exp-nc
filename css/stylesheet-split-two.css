@@ -223,7 +223,7 @@
   font-weight: normal;
   text-transform: none;
   text-rendering: auto;
-  font-size: 1;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   will-change: transform;
@@ -302,7 +302,7 @@
   line-height: 1;
   font-size: 16px;
   font-weight: 400;
-  color: #110c1e;
+  color: #5a3a97;
 }
 
 .teaser__description {
@@ -443,7 +443,7 @@
   line-height: 1;
   font-size: 16px;
   font-weight: 400;
-  color: #110c1e;
+  color: #5a3a97;
 }
 
 .teaser__description {

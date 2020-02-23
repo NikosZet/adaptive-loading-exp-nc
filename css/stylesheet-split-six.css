@@ -690,6 +690,10 @@ body .aem-Grid > .aem-GridColumn.bottom-margin-64px {
   padding-bottom: 64px;
 }
 
+body .hidden {
+  display: none;
+}
+
 body .top-margin-96px > .full-container {
   padding-top: 96px;
 }

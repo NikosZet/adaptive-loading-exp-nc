@@ -1,67 +1,105 @@
-// Adaptive-loading util
-var adpativeLoading = {
-  effectiveType:     navigator.connection.effectiveType,
-  deviceMemory:      navigator.deviceMemory,
-  logicalProcessors: navigator.hardwareConcurrency,
-
-  networkCases:   ['slow-2g', '2g', '3g', '4g'],
-  memoryCases:    ['0.25', '0.5', '1', '2', '4', '8'],
-  processorCases: []
-}
+const goodConnection = isGoodConnection();
 
 // Settings
-var stickyOption = {
-  acceptButton:     document.getElementById('adaptive-accept'),
-  declineButton:    document.getElementById('adaptive-decline'),
-  closeButton:      document.getElementById('adaptive-close'),
-  stickyWrapper:    document.getElementById('adaptive-option'),
+const stickyOption = {
+  acceptButton: document.getElementById('adaptive-accept'),
+  declineButton: document.getElementById('adaptive-decline'),
+  closeButton: document.getElementById('adaptive-close'),
+  stickyWrapper: document.getElementById('adaptive-option'),
+  teaserBase: document.getElementsByClassName('teaser__base--no-campaign'),
   noCampaignImages: document.getElementsByClassName('no-campaign-image'),
   noCampaignVideos: document.getElementsByClassName('no-campaign-video')
 }
 
+const videoTemplate = `<iframe class="video__youtube__iframe"
+                             width="100%"
+                             src="https://www.youtube.com/embed/cz_4NcgfTTo"
+                             frameborder="0"
+                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                             allowfullscreen>
+                     </iframe>`;
+
+const videoLinkTemplate = `<img src="images/video-adaptive.jpeg"
+                              class="nc-image__image nc-image--loading nc-image__image--landscape nc-image--loaded"
+                              alt="cases">
+                         <a class="video__button"
+                            href="https://www.youtube.com/watch?v=cz_4NcgfTTo"
+                            target="_blank"
+                            aria-label="Link to youtube video">
+                            <i class="icons icons--play"
+                               aria-hidden="true">
+                            </i>
+                         </a>`;
+
 function handleSticky(accept, decline, close, sticky) {
-  // Display
   sticky.classList.remove('hidden');
 
   // Click events
-  accept.addEventListener('click', function () {
-    removeSticky()
-  });
-  close.addEventListener('click', function () {
-    removeSticky()
-  });
-  decline.addEventListener('click', function () {
-    removeAdaptive();
+  accept.addEventListener('click', () => removeSticky());
+  close.addEventListener('click', () => removeSticky());
+  decline.addEventListener('click', () => {
+    removeAdaptive(stickyOption.noCampaignImages, stickyOption.noCampaignVideos, stickyOption.teaserBase);
     removeSticky();
   });
 
-  // methods
   function removeSticky() {
     sticky.remove();
   }
-
-  function removeAdaptive() {
-    console.log('Remove Adaptive');
-    //get assets(image-video)
-
-    //change resources 'src' or design(lower resolution or none)
-
-  }
 }
 
-function optimizePage(images, videos) {
-  //get assets(image-video)
+function removeAdaptive(images, videos, teasers) {
+  let imageList = [...images];
+  let teaserList = [...teasers];
+  let videoList = [...videos];
 
-  //change resources 'src' or design(take decisions)
-  console.log(images, videos);
-
-  //change naming of images to handle the src of each image separately by a loop
+  //REMOVE ADAPTIVE OPTIMIZATION
+  imageList.forEach(el => {
+    el.src = `images/${el.alt}.jpg`;
+    el.classList.remove('hidden');
+  });
+  teaserList.forEach(el => el.classList.remove('teaser__base--adaptive'));
+  videoList.forEach(el => {
+    el.innerHTML = videoTemplate;
+    el.parentNode.classList.remove('video__wrapper--adaptive');
+  });
+  addScirpts();
 }
 
-// Conditions to optimize and display the option (2G, 3G)
-if (adpativeLoading.effectiveType === adpativeLoading.networkCases[0] ||
-  adpativeLoading.effectiveType === adpativeLoading.networkCases[1] ||
-  adpativeLoading.effectiveType === adpativeLoading.networkCases[2]) {
+function optimizePage(images, videos, teasers) {
+  let imageList = [...images];
+  let teaserList = [...teasers];
+  let videoList = [...videos];
+
+  //OPTIMIZE TEASER COMPONENT
+  imageList.forEach(el => el.classList.add('hidden'));
+  teaserList.forEach(el => el.classList.add('teaser__base--adaptive'));
+
+  //OPTIMIZE VIDEO COMPONENT
+  videoList.forEach(el => {
+    el.classList.add('video__youtube--adaptive');
+    el.innerHTML = videoLinkTemplate;
+    el.parentNode.classList.add('video__wrapper--adaptive');
+  });
+}
+
+function addScirpts() {
+  let heavyScript = document.createElement('script');
+  heavyScript.type = 'text/javascript';
+  heavyScript.src = 'js/publish.js';
+  document.head.append(heavyScript);
+
+  let thirdPartyScript = document.createElement('script');
+  thirdPartyScript.type = 'text/javascript';
+  thirdPartyScript.src = 'https://kit.fontawesome.com/d535e0526d.js';
+  thirdPartyScript.crossOrigin = 'anonymous';
+  thirdPartyScript.async = true;
+  document.head.append(thirdPartyScript);
+}
+
+if (goodConnection) {
+  removeAdaptive(stickyOption.noCampaignImages, stickyOption.noCampaignVideos, stickyOption.teaserBase);
+  addScirpts();
+} else {
   handleSticky(stickyOption.acceptButton, stickyOption.declineButton, stickyOption.closeButton, stickyOption.stickyWrapper);
-  optimizePage(stickyOption.noCampaignImages, stickyOption.noCampaignVideos);
+  optimizePage(stickyOption.noCampaignImages, stickyOption.noCampaignVideos, stickyOption.teaserBase);
 }
